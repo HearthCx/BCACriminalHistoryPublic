@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Jim Oolman (MN DEPT OF PUBLIC SAFETY) -->
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Eric Seaberg (MN Bureau of Criminal Apprehension, CJIS) -->
+<xsd:schema targetNamespace="http://www.crimnet.state.mn.us/MNJustice/1.0/ReferenceSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns:mnj="http://www.crimnet.state.mn.us/MNJustice/1.0/ReferenceSchema" xmlns:j="http://www.it.ojp.gov/jxdm/3.0.2" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:annotation>
+    <xsd:documentation>Version 1.0                             Jim Oolman                                          Initial Draft</xsd:documentation>
+  </xsd:annotation>
+  <xsd:import namespace="http://www.it.ojp.gov/jxdm/3.0.2" schemaLocation="PublicCriminalHistory_1.0_gjxdm.xsd" />
+  <xsd:complexType name="WebServerRoutingType">
+    <xsd:sequence>
+      <xsd:element name="GUID" type="xsd:string" />
+      <xsd:element name="CorrelationId" type="xsd:string" />
+      <xsd:element name="UriName" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="MethSearchType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that defines the search criteria for a Methodone Offender Registry search</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="j:PersonName" minOccurs="0" />
+      <xsd:element name="CountyCode" type="xsd:int" minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PersonSearchType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes public criminal history search criteria.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element ref="j:PersonName" />
+      <xsd:element ref="j:PersonBirthDate" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="CriminalRecordType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes a set of convictions.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Subject" type="mnj:PersonType" />
+      <xsd:element name="SubjectHistoryUnavailableText" type="xsd:string" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation>Text associated with a subject when no Conviction or Supervision Records are available.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="ConvictionRecord" type="mnj:ConvictionType" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="SupervisionRecord" type="mnj:SupervisionType" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PersonType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes the inherent and frequently associated characteristics of a person.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="j:PersonType">
+        <xsd:sequence>
+          <xsd:element name="StatementOfDisagreement" type="xsd:string" minOccurs="0" />
+          <xsd:element name="PersonAlias" type="mnj:PersonAliasType" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation>A name and set of personal demographics describing the same person using alternative descriptors, e.g., an AKA.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="PersonAliasType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes the inherent and frequently associated characteristics of a person.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="PersonName" type="mnj:PersonAliasNameType" maxOccurs="unbounded" />
+      <xsd:element name="PersonNameCaveat" type="xsd:string" minOccurs="0" />
+      <xsd:element ref="j:PersonBirthDate" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>A date a person was born.</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="PersonAliasNameType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes a name of a person.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="j:PersonNameType">
+        <xsd:sequence>
+          <xsd:element name="PersonNameQuestionedIdentityIndicator" type="xsd:boolean" minOccurs="0" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ConvictionType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes details about a judgement that a defendant is guilty.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="j:ConvictionType">
+        <xsd:sequence>
+          <xsd:element name="ControllingAgency" type="mnj:ControllingAgencyType" minOccurs="0" />
+          <xsd:element name="AssignedCustodialAgency" type="j:OrganizationType1" minOccurs="0" />
+          <xsd:element name="AssignedProbationAgency" type="j:OrganizationType1" minOccurs="0" />
+          <xsd:element name="StatementOfDisagreement" type="xsd:string" minOccurs="0" />
+          <xsd:element name="ConvictionCharge" type="mnj:ChargeType" maxOccurs="unbounded" />        
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ChargeType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes details about a formal allegation that a specific person has committed a specific offense.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="j:ChargeType">
+        <xsd:sequence>
+          <xsd:element name="ConvictionCourtCase" type="j:CaseType" minOccurs="0" />
+          <xsd:element name="ChargeDisposition" type="mnj:ChargeDispositionType" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation>A structure that describes details about the results or processing of a charge.</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+          <xsd:element name="ConvictionLevel" type="xsd:string" minOccurs="0" />
+          <xsd:element name="StatementOfDisagreement" type="xsd:string" minOccurs="0" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ChargeDispositionType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes details about the results or processing of a charge.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="j:ChargeDispositionType">
+        <xsd:sequence>
+          <xsd:element name="PronouncedFine" type="mnj:ObligationType" minOccurs="0" />
+          <xsd:element name="StayedFine" type="mnj:ObligationType" minOccurs="0" />
+          <xsd:element name="CourtCostFee" type="mnj:ObligationType" minOccurs="0" />
+          <xsd:element name="Restitution" type="mnj:ObligationType" minOccurs="0" />
+          <xsd:element name="AssessmentFee" type="mnj:ObligationType" minOccurs="0" />
+          <xsd:element name="PronouncedSentence" type="j:TermType" minOccurs="0" />
+          <xsd:element name="ProbationalSentence" type="j:TermType" minOccurs="0" />
+          <xsd:element name="ConditionalConfinement" type="j:TermType" minOccurs="0" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ControllingAgencyType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes a unit which conducts some sort of business or operations.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="j:OrganizationType">
+        <xsd:sequence>
+          <xsd:element name="OriginatingAgencyCaseNumber" type="j:IDType" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SupervisionType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes an act of officially overseeing, supervising, or keeping track in some capacity of a person.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="j:SupervisionType">
+        <xsd:sequence>
+          <xsd:element name="SupervisionChargeDisposition" type="j:StatusType" minOccurs="0" />
+          <xsd:element name="StatementOfDisagreement" type="xsd:string" minOccurs="0" />
+          <xsd:element name="SupervisionConvictionCharge" type="mnj:SupervisionChargeType" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SupervisionChargeType">
+    <xsd:annotation>
+      <xsd:documentation>A structure that describes details about a formal allegation that a specific person has committed a specific offense.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="j:ChargeType">
+        <xsd:sequence>
+          <xsd:element name="OriginatingAgencyCaseNumber" type="j:IDType" />
+          <xsd:element name="Comment" type="xsd:string" minOccurs="0" maxOccurs="unbounded" />
+          <xsd:element name="StatementOfDisagreement" type="xsd:string" minOccurs="0" />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ObligationType">
+    <xsd:sequence>
+      <xsd:element name="ObligationAmount" type="xsd:decimal" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

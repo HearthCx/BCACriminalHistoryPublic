@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Jim Oolman (MN DEPT OF PUBLIC SAFETY) -->
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Eric Seaberg (MN Bureau of Criminal Apprehension, CJIS) -->
+<xsd:schema targetNamespace="http://www.crimnet.state.mn.us/MNJustice/1.0/RuntimeSchema/PublicCriminalHistory/01.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns:mnj="http://www.crimnet.state.mn.us/MNJustice/1.0/ReferenceSchema" xmlns:mnr="http://www.crimnet.state.mn.us/MNJustice/1.0/RuntimeSchema/PublicCriminalHistory/01.0" xmlns:j="http://www.it.ojp.gov/jxdm/3.0.2" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:annotation>
+		<xsd:documentation>Version 1.0                             Jim Oolman                                          Initial Draft</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.crimnet.state.mn.us/MNJustice/1.0/ReferenceSchema" schemaLocation="PublicCriminalHistory_1.0_mnj.xsd"/>
+	<xsd:element name="CriminalHistoryDump">
+		<xsd:annotation>
+			<xsd:documentation>This documents all the public criminal history data available at the time the file was created.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+					<xsd:element name="CriminalRecord" type="mnj:CriminalRecordType" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

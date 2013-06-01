@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v2004 rel. 4 U (http://www.xmlspy.com) by Jim Oolman (MN DEPT OF PUBLIC SAFETY) -->
+<xsd:schema targetNamespace="http://www.it.ojp.gov/jxdm/3.0.2" xmlns:j="http://www.it.ojp.gov/jxdm/3.0.2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:annotation>
+		<xsd:documentation>Version 1.0                             Jim Oolman                                          Initial Draft</xsd:documentation>
+	</xsd:annotation>
+	<xsd:complexType name="ActivityCoreType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes details about an activity or process that occurs.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ActivityDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A date of an activity that occurs at a singular point in time or a start date of an activity that occurs over a period of time.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ActivityCoreType1">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes details about an activity or process that occurs.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ActivityID" type="j:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>An identifier that uniquely refers to an activity or process that occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ActivityDescriptionText" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A description or narrative of the activity or process that occurred.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ActivityDate" type="xsd:date" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A date of an activity that occurs at a singular point in time or a start date of an activity that occurs over a period of time.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="CaseType">
+		<xsd:annotation>
+			<xsd:documentation>An aggregation of information, in any format, that describes a set of related activities and occurrences. The domain or discipline defines the limits of the information included in a specific kind of case. Case is not limited to any particular discipline or domain, and can relate a wide range of areas: a situation requiring investigation or action (as by the police); the object of investigation or consideration; an instance of disease or injury; an instance that directs attention to a situation or exhibits it in action; a set of circumstances or a state of affairs; a situation; a question or problem; a matter; an action or a law suit or just grounds for an action; the facts or evidence offered in support of a claim; a set of reasons or supporting facts; a person being assisted, treated, or studied, as by a physician, lawyer, or social worker.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="CaseTrackingID" type="j:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A number used to track a case.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ChargeClassificationType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes details of a commitment made to secure the release of a subject being held in custody and suspected of a crime.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ChargeApplicabilityText" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A degree of involvement a person is being charged with committing in an offense. Sometimes referred to as A/C/S, InchoateCharge. Example: Solicitation; Conspiracy; Attempt; Accessory Before the Fact.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ChargeDispositionType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes details about the results or processing of a charge.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ChargeDispositionVerdict" type="j:VerdictType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A finding by a judge or jury of that nature of a person allegedly committing an offense.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ChargeType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes details about a formal allegation that a specific person has committed a specific offense.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ChargeClassification" type="j:ChargeClassificationType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Details that further describes and classifies a charge.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ChargeStatute" type="j:StatuteType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A unique identifier of a law, rule, or ordinance within a jurisdiction that a person is accused of violating.
+</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ChargeType1">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes details about a formal allegation that a specific person has committed a specific offense.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence maxOccurs="unbounded">
+			<xsd:element name="ChargeStatute" type="j:StatuteType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A unique identifier of a law, rule, or ordinance within a jurisdiction that a person is accused of violating.
+</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ConditionType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes details about a requirement.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="j:ActivityCoreType">
+				<xsd:sequence>
+					<xsd:element name="ConditionGroupID" type="j:IDType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>An identifier of a group of conditions to which this condition belongs.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ConvictionType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes details about a judgement that a defendant is guilty.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="j:ActivityCoreType">
+				<xsd:sequence>
+					<xsd:element name="ConvictionCourt" type="j:CourtType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CourtType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes details about a court or a unit of a court responsible for trying justice proceedings.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="j:OrganizationType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="IDType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes an identifier of an entity.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="ID" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>A value that identifies an entity within the identifier domain.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OrganizationType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes a unit which conducts some sort of business or operations.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="OrganizationName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A name of an organization.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="OrganizationORIID" type="j:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A unique identifier assigned to a justice-related organization by the federal government. Sometimes referred to as ORI, ORI code, Originating Agency Code.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="OrganizationType1">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes a unit which conducts some sort of business or operations.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="OrganizationName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A name of an organization.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PersonNameType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes a name of a person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="PersonGivenName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A first name of a person.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PersonMiddleName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A middle name of a person.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PersonSurName" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A last name or family name of a person.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="PersonName" type="j:PersonNameType"/>
+	<xsd:complexType name="PersonPhysicalDetailsType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes the physical appearance of a person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="PersonSexText" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The gender or sex of a person.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PersonRaceText" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A classification of a person based on factors such as geographical locations and genetics.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PersonType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes the inherent and frequently associated characteristics of a person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="PersonName" type="j:PersonNameType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A name by which a person is known. </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element ref="j:PersonBirthDate" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A date a person was born.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="PersonPhysicalDetails" type="j:PersonPhysicalDetailsType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A set of details about the physical appearance of a person.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="PersonBirthDate" type="xsd:date">
+		<xsd:annotation>
+			<xsd:documentation>A date a person was born.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="SentenceType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes a punishment resulting from conviction of charges in a court case.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="j:ActivityCoreType">
+				<xsd:sequence>
+					<xsd:element name="SentenceCharge" type="j:ChargeType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>A specific charge in a court case resulting in a sentence.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="SentenceDescriptionText" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>A description of the sentence being imposed, e.g., probation, incarceration, public service.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="SentenceCondition" type="j:ConditionType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>A description and duration of a sentence component.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="SentenceGroupingText" type="xsd:string" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>An order to how a sentence must be served, e.g., consecutively, concurrently, or both.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="SentenceTerm" type="j:TermType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>A duration of a sentence. Specified as either a specific term in days-months-years or as a minimum - maximum range.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="StatusType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes details about an activity or process that occurs.</xsd:documentation>
+			<xsd:documentation>A structure that describes the conditions or status of a person, activity, or object.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="StatusDescriptionText" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A description of a condition or state of something or someone.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="StatuteType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes a law, rule, or ordinance within a jurisdiction.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="StatuteCodeID" type="j:IDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>An identifier of a set of laws for a particular jurisdiction. Sometimes referred to as a code book, legal code, native state code, or law.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="StatuteDescriptionText" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A description of a statute.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="SupervisionType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes an act of officially overseeing, supervising, or keeping track in some capacity of a person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="j:ActivityCoreType">
+				<xsd:sequence>
+					<xsd:element name="SupervisionAgency" type="j:OrganizationType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>An agency responsible for supervising a subject.
+</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TermType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes a duration length either in specific terms or as a range.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="TermDuration" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A specific range or duration of a term, with the format PnYnMnDTnHnMnS, where nY is the number of years, nM is the number of months, nD is the number of days, nH is the number of hours, nM is the number of minutes, and nS is the number of seconds. A preceding minus sign (-) may be used to indicate a negative duration. If any portion of the duration is blank, the number and its designator may be omitted. If there are no time portions present, the time designator (T) should be omitted.
+</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VerdictType">
+		<xsd:annotation>
+			<xsd:documentation>A structure that describes a finding related to a charge.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="VerdictDescriptionText" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>A description of a verdict. For example, Guilty, Not Guilty, Proven Delinquent, Not Proven Delinquent, etc.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
