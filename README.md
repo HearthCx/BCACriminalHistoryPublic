@@ -16,9 +16,7 @@ By transforming this data source to a more usable format and documenting the str
 
 ## Disclaimer
 
-Please note: The data and source code contained herewithin are provided "AS-IS" and without warranty. We can't verify or gaurantee any of this information. Information may be out-of-date or otherwise innacurate. We are not responsible for misuse of this data. Don't use this data for anything other than the project outlined in "Project context" unless you have obtained it directly from the BCA.
-
-The information here is provided for the sole purposes of writing code to translate this data source as described in the project context section. Please do not re-distribute this data source or reuse it for any other purposes at this time. If you would like obtain this data for other projects, please email me to get information on how you can obtain it directly from the BCA.
+This repository does not contain the XML data source referenced in this project.
 
 ## BCA Disclaimers
 
