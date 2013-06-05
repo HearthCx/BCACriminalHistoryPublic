@@ -12,7 +12,7 @@
 import sqlite3 as lite
 import sys
 
-con = lite.connect('bca.db')
+con = lite.connect('../bca.db')
 
 try:
     con = lite.connect('bca.db')

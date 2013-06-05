@@ -34,7 +34,7 @@ def run():
     print 'Start time:',
     print strftime("%a, %d %b %Y %H:%M", localtime())
 
-    db = 'bca.db'
+    db = '../bca.db'
     filename = '../public.xml'
 
     try:
