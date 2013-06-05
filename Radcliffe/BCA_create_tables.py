@@ -1,8 +1,16 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+#
+# Module: BCA_create_tables.py
+#
+# This module creates the SQLite3 database tables for the
+# main application. It should be run once before running main.py.
+#
+# WARNING! If the tables already exist, then this application will
+# drop the tables, and all data in the database will be lost.
 
 import sqlite3 as lite
-import sys 
+import sys
 
 con = lite.connect('bca.db')
 

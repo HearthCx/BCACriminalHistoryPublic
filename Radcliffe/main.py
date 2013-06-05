@@ -1,4 +1,27 @@
 # Module: main.py
+#
+# This is the main module for the application.
+# It creates an instance of the class BCA,
+# which is used to update a database from an XML file.
+#
+# The input file is a data dump of criminal records from
+# the Minnesota Bureau of Criminal Apprehensions, and the
+# output file is an SQLite3 database.
+#
+# This module assumes that the database tables have already
+# been created. If they do not exist, then they can be created
+# using the module BCA_create_tables.py.
+#
+# The test script BCA_test.py can be used to verify that the
+# data was inserted correctly.
+#
+#
+#       Author: David G Radcliffe (dradcliffe@gmail.com)
+#       Last modified 5 June 2013
+#
+#       License: Attribution-ShareAlike (CC-BY-SA)
+
+
 from BCA import BCA
 import sys
 from time import time, localtime, strftime

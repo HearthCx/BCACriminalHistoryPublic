@@ -1,3 +1,12 @@
+# Module: process_alias.py
+#
+#   Extract the data from a PersonAlias element, then insert
+#   into the SQL tables SubjectName and SubjectBirthDate.
+#
+# Called from: process_criminal_record.py
+#
+# Requires:    get.py, insert.py
+
 import get, insert
 
 def run(b, Alias):

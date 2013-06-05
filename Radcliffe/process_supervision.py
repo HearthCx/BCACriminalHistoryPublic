@@ -1,3 +1,12 @@
+# Module: process_supervision.py
+#
+#   Extract the data from a SupervisionRecord element, then insert
+#   into the SQL TABLE SupervisionRecord.
+#
+# Called from: process_criminal_record.py
+#
+# Requires:    get.py, insert.py
+
 import get, insert
 
 def run(b, s):

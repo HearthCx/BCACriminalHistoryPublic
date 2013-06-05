@@ -1,3 +1,19 @@
+# Module: get.py
+#
+# Called from: process_alias.py, process_supervision.py,
+#              process_conviction.py, process_criminal_record.py
+#
+# This module contains helper functions that extend the find and
+# findall methods in xml.etree.cElementTree.
+#
+# Examples:
+#     node(elt, 'a/b/c') is equivalent to elt.find('a').find('b').find('c')
+#     text(elt, 'a/b/c') is equivslent to elt.find('a').find('b').find('c').text
+#     All(elt,  'a/b/c') is equivalent to elt.find('a').find('b').findall('c')
+#
+# Pretty cool, ain't it?
+
+
 def node(elt, path = None):
     if path:
         for tag in path.replace(' ','').split('/'):

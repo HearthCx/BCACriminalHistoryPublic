@@ -1,0 +1,240 @@
+	Schema for the BCA criminal record database
+	==================================
+
+XML file
+======
+
+The XML file contains a collection of criminal records, tagged with <CriminalRecord>. A criminal record consists of the following elements:
+* A subject record <Subject>.
+* One or more conviction records <ConvictionRecord>. 
+* Optionally, one or more supervision records <SupervisionRecord>.
+
+A small number of criminal records have supervision records but no criminal records.
+
+Each subject record can contain multiple names or aliases, so we cannot identify a criminal record by a unique name for the subject.
+
+The detailed structure of the XML file is shown below. The asterisks (*) denote elements that can be repeated.
+
+
+<CriminalRecord> *
+
+	<Subject>
+		<PersonAlias>
+			<PersonName> *
+				<PersonGivenName>
+				<PersonMiddleName>
+				<PersonSurName>
+			<PersonBirthDate> *
+			
+	<ConvictionRecord> *
+		<ActivityDate>
+		<ConvictionCourt>
+			<OrganizationName>
+			<OrganizationORIID>
+				<ID>
+		<ControllingAgency>
+			<OrganizationName>
+			<OrganizationORIID>
+				<ID>
+			<OriginatingAgencyCaseNumber>
+		<AssignedCustodialAgency>
+			<OrganizationName>
+		<AssignedProbationAgency>
+			<OrganizationName>
+		<StatementOfDisagreement>
+		<ConvictionCharge>
+			<ChargeClassification>
+				<ChargeApplicabilityText>
+			<ChargeStatute>
+				<StatuteCodeID>
+					<ID>
+				<StatuteDescriptionText> 
+			<ConvictionCourtCase>
+				<CaseTrackingID>
+					<ID>
+			<ChargeDisposition>
+				<ChargeDispositionVerdict>
+					<VerdictDescriptionText>
+			<PronouncedFine>
+				<ObligationAmount>
+			<AssessmentFee>
+				<ObligationAmount>
+			<StayedFine>
+				<ObligationAmount>
+			<Restitution>
+				<ObligationAmount>
+			<PronouncedSentence>
+				<TermDuration>
+			<ProbationalSentence>
+				<TermDuration>
+			<ConditionalConfinement>
+				<TermDuration>
+			<ConvictionLevel>
+			
+	<SupervisionRecord> *
+		<ActivityDate>
+		<SupervisionAgency>
+			<OrganizationName>
+			<OrganizationORIID>
+				<ID>
+		<SupervisionChargeDisposition>
+			<StatuteDescriptionText>
+		<SupervisionConvictionCharge>
+			<ChargeClassification>
+			<ChargeStatute>
+				<StatuteCodeID>
+					<ID>
+				<StatuteDescriptionText>
+			<OriginatingAgencyCaseNumber>
+				<ID>
+			<Comment> *
+
+
+
+SQL database
+==========
+
+The SQL database consists of four tables.
+
+* SubjectName lists the names or aliases appearing in each criminal record.
+* SubjectBirthDate table lists the birthdates appearing in each criminal record.
+* A criminal record contains one or more conviction records, and this data is stored in the ConvictionRecord table.
+* A criminal record contains zero or more supervision records, and this data is stored in the  SupervisionRecord table.
+
+For each column of the tables, we provide the XML path to this data, starting from /CriminalHistoryDump/CriminalRecord/
+
+
+TABLE SubjectName
+
+SubjectID
+[auto-incremented for each criminal record]
+		
+GivenName
+Subject/PersonAlias/PersonName/PersonGivenName
+		
+MiddleName
+Subject/PersonAlias/PersonName/PersonMiddleName
+		
+SurName
+Subject/PersonAlias/PersonName/PersonGivenName
+
+
+TABLE SubjectBirthDate
+
+SubjectID [same as SubjectName.SubjectID]
+			
+BirthDate
+Subject/PersonAlias/PersonBirthDate
+
+TABLE ConvictionRecord
+
+ConvictionID (primary key)
+[auto-incremented for each conviction record]
+		
+SubjectID [same as SubjectName.SubjectID]
+
+ActivityDate
+ConvictionRecord/ActivityDate
+		
+ConvictionCourtName
+ConvictionRecord/ConvictionCourt/OrganizationName
+		
+ConvictionCourtORIID
+ConvictionRecord/ConvictionCourt/OrganizationORIID/ID
+	
+ControllingAgencyName
+ConvictionRecord/ControllingAgency/OrganizationName
+		
+ControllingAgencyORIID
+ConvictionRecord/ControllingAgency/OrganizationORIID/ID
+
+OriginatingAgencyCaseNumber
+ConvictionRecord/ControllingAgency/OrganizationAgencyCaseNumber/ID
+
+AssignedCustodialAgency
+ConvictionRecord/AssignedCustodialAgency/OrganizationName
+		
+AssignedProbationAgency
+ConvictionRecord/AssignedProbationAgency/OrganizationName
+
+StatementOfDisagreement
+ConvictionRecord/StatementOfDisagreement
+
+ChargeClassification
+ConvictionRecord/ConvictionCharge/ChargeClassification/ChargeApplicabilityText
+
+StatuteCodeID
+ConvictionRecord/ConvictionCharge/ChargeStatute/CodeID/ID
+
+StatuteDescription
+ConvictionRecord/ConvictionCharge/ChargeStatute/StatuteDescriptionText
+
+ConvictionCourtCase
+ConvictionRecord/ConvictionCharge/CaseTrackingID/ID
+
+ChargeVerdict
+ConvictionRecord/ConvictionCharge/ChargeDisposition/ChargeDispositionVerdict/VerdictDescriptionText
+
+PronouncedFine
+ConvictionRecord/ConvictionCharge/PronouncedFine/ObligationAmount
+
+AssessmentFee
+ConvictionRecord/ConvictionCharge/AssessmentFee/ObligationAmount
+
+StayedFine
+ConvictionRecord/ConvictionCharge/StayedFine/ObligationAmount
+
+Restitution
+ConvictionRecord/ConvictionCharge/Restitution/ObligationAmount
+
+PronouncedSentence
+ConvictionRecord/ConvictionCharge/PronouncedSentence/TermDuration
+
+ProbationalSentence
+ConvictionRecord/ConvictionCharge/ProbationalSentence/TermDuration
+
+ConditionalConfinement
+ConvictionRecord/ConvictionCharge/CnditionalConfinement/TermDuration
+
+ConvictionLevel
+ConvictionRecord/ConvictionCharge/ConvictionLevel
+
+TABLE SupervisionRecord
+
+SupervisionID (primary key)
+
+SubjectID [same as SubjectName.SubjectID]
+
+ActivityDate
+SupervisionRecord/ActivityDate
+
+AgencyName
+SupervisionRecord/SupervisionAgency/OrganizationName
+
+AgencyORIID
+SupervisionRecord/SupervisionAgency/OrganizationORIID/ID
+
+ChargeDisposition
+SupervisionRecord/SupervisionChargeDisposition/StatusDescriptionText
+
+ChargeClassification
+SupervisionRecord/SupervisionConvictionCharge/ChargeClassification
+
+ChargeCodeID
+SupervisionRecord/SupervisionConvictionCharge/ChargeStatute/StatuteCodeID/ID
+
+StatuteDescription
+SupervisionRecord/SupervisionConvictionCharge/ChargeStatute/StatuteDescriptionText
+
+OriginatingAgencyCaseNumber
+SupervisionRecord/SupervisionConvictionCharge/OriginatingAgencyCaseNumber/ID
+
+Comments
+SupervisionRecord/SupervisionConvictionCharge/Comment
+
+	
+	
+	
+	
+
+	

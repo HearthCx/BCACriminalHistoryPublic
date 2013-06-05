@@ -1,3 +1,12 @@
+# Module: BCA.py
+#
+# This module defines a handler class BCA that parses an XML file
+# and inserts the data into an SQLite database.
+#
+# Called from: main.py
+#
+# Requires: process_criminal_record.py
+
 import xml.etree.cElementTree as et
 import process_criminal_record
 
@@ -21,9 +30,6 @@ class BCA():
 
         buf = ""
         for line in self.infile:
-##            if self.subjects >= 50:
-##                    xml_file.close()
-##                    break
             line = str(line.strip())
 
             if end_tag in line:
