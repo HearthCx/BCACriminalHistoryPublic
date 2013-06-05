@@ -1,5 +1,4 @@
 # Module: main.py
-
 from BCA import BCA
 import sys
 from time import time, localtime, strftime
