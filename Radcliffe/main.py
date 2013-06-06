@@ -41,7 +41,7 @@ def run():
         con = lite.connect(db)
         cur = con.cursor()
         infile = open(filename, 'r')
-        
+
         b = BCA(cur,infile)
         b.run()
 

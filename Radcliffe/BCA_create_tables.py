@@ -12,10 +12,8 @@
 import sqlite3 as lite
 import sys
 
-con = lite.connect('../bca.db')
-
 try:
-    con = lite.connect('bca.db')
+    con = lite.connect('../bca.db')
     cur = con.cursor()
     cur.executescript("""
         DROP TABLE IF EXISTS SubjectName;
